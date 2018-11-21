@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
-	public Paddle paddle;
-	public Plane plane;
+public class AIPaddle : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
 		
-
-
 	}
 	
 	// Update is called once per frame
