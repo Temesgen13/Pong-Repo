@@ -12,6 +12,10 @@ public class BallController : MonoBehaviour {
 	public Paddle player;
 	public AIPaddle computer;
 
+
+	public double timer =0;
+	public double timerMax =1;
+
 	void Start () {
 
 
@@ -20,10 +24,23 @@ public class BallController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position = new Vector3 (this.transform.position.x +.05f * xdirection,0,  this.transform.position.z+zdirection*.05f);
+		this.transform.position = new Vector3 (this.transform.position.x + .08f * xdirection, 0, this.transform.position.z + zdirection * .08f * Random.Range (1, 5));
 
 		player.transform.position = new Vector3 (-4,0,this.transform.position.z);
-		computer.transform.position = new Vector3 (4,0,this.transform.position.z);
+
+		timer += Time.deltaTime;
+		Debug.Log (timer.ToString ());
+		//if(timer >= timerMax){
+			
+			timer = 0;
+			if (computer.transform.position.z -.05f  <= this.transform.position.z ) {
+				computer.transform.position = new Vector3 (4,0,computer.transform.position.z +.2f);
+			} 
+			if (computer.transform.position.z +.05f  > this.transform.position.z ) {
+				computer.transform.position = new Vector3 (4,0,computer.transform.position.z -.2f);
+			}
+		//}
+
 	}
 
 	void OnTriggerEnter( Collider collider){
